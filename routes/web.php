@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\RedirectResponse;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +15,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/home');
 });
+
+Auth::routes();
+// Auth::routes(['register' => false]); -- hidden register page
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
